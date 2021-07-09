@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Trab - AV3</title>
+	<script type="text/javascript">
+	
+	
+	var flag = 0;
+	function milhar (n, valor) {
+		var x = Math.floor(n / valor);
+		if(x == 1){
+			var text = "um";
+		}
+		if(x == 2){
+			var text = "dois";
+		}
+		if(x == 3){
+			var text = "três";
+		}
+		if(x == 4){
+			var text = "quatro";
+		}
+		if(x == 5){
+			var text = "cinco";
+		}
+		if(x == 6){
+			var text = "seis";
+		}
+		if(x == 7){
+			var text = "sete";
+		}
+		if(x == 8){
+			var text = "oito";
+		}
+		if(x == 9){
+			var text = "nove";
+		}
+		if(x == 10){
+			var text = "dez";
+		}
+		return text;
+	}
+
+
+
+	function uni(n) {
+		var x = n % 10;
+		var y = Math.floor(x / 1)
+		if(y == 0) {
+			return y
+		}
+		if(y == 1) {
+			var text = " um ";
+			return text;
+		}
+		if(y == 2) {
+			var text = " dois ";
+			return text;
+		}
+		if(y == 3) {
+			var text = " três ";
+			return text;
+		}
+		if(y == 4) {
+			var text = " quatro ";
+			return text;
+		}
+		if(y == 5) {
+			var text = " cinco ";
+			return text;
+		}
+		if(y == 6) {
+			var text = " seis ";
+			return text;
+		}
+		if(y == 7) {
+			var text = " sete ";
+			return text;
+		}
+		if(y == 8) {
+			var text = " oito ";
+			return text;
+		}
+		if(y == 9) {
+			var text = " nove ";
+			return text;
+		}
+	}
+
+
+
+	function dezena(n) {
+		var x = n % 100;
+		var y = Math.floor(x / 10)
+		if(y == 0) {
+			return y
+		}
+		if(y == 1) {
+			if (uni(n) != 0) {
+				flag = 1;
+				if (uni(n) == " um ") {
+					var text = " onze "
+					return text
+				}
+				if (uni(n) == " dois ") {
+					var text = " doze "
+					return text
+				}
+				if (uni(n) == " três ") {
+					var text = " treze "
+					return text
+				}
+				if (uni(n) == " quatro ") {
+					var text = " quatoze "
+					return text
+				}
+				if (uni(n) == " cinco ") {
+					var text = " quinze "
+					return text
+				}
+				if (uni(n) == " seis ") {
+					var text = " dezeseis "
+					return text
+				}
+				if (uni(n) == " sete ") {
+					var text = " dezesete "
+					return text
+				}
+				if (uni(n) == " oito ") {
+					var text = " dezoito "
+					return text
+				}
+				if (uni(n) == " nove ") {
+					var text = " dezenove "
+					return text
+				}
+			} else {
+				var text = " dez "
+				return text
+			}
+		}
+		if(y == 2) {
+			var text = " vinte "
+			return text
+		}
+		if(y == 3) {
+			var text = " trinta "
+			return text
+		}
+		if(y == 4) {
+			var text = " quarenta "
+			return text
+		}
+		if(y == 5) {
+			var text = " cinquenta "
+			return text
+		}
+		if(y == 6) {
+			var text = " sesenta "
+			return text
+		}
+		if(y == 7) {
+			var text = " setenta "
+			return text
+		}
+		if(y == 8) {
+			var text = " oitenta "
+			return text
+		}
+		if(y == 9) {
+			var text = " noventa "
+			return text
+		}
+		
+	}
+
+	function centena(n) {
+		var x = n % 1000;
+		var y = Math.floor(x / 100)
+		if(y == 0) {
+			return y
+		}
+		if(y == 1){
+			if((dezena(n) == 0 ) && (uni(n) == 0)) {
+				var text = " cem "
+				return text
+			} else {
+				var text = " cento "
+				return text
+			}
+		}
+		if(y == 2) {
+			var text = " duzentos "
+			return text
+		}
+		if(y == 3) {
+			var text = " trezentos "
+			return text
+		}
+		if(y == 4) {
+			var text = " quatrocentos "
+			return text
+		}
+		if(y == 5) {
+			var text = " quinhentos "
+			return text
+		}
+		if(y == 6) {
+			var text = " seiscentos "
+			return text
+		}
+		if(y == 7) {
+			var text = " setecentos "
+			return text
+		}
+		if(y == 8) {
+			var text = " oitocentos "
+			return text
+		}
+		if(y == 9) {
+			var text = " novecentos "
+			return text
+		}
+	}
+
+	
+	function escrever() {
+		var inNumero = document.getElementById("inNumero");
+		var n = inNumero.value;
+		var texto = "";
+		
+		if (n <= 0 || n > 10000 || isNaN(n)) {
+		texto += "Numero Invalido"
+		} else {
+
+			if(Math.floor(n / 10) > 0){
+				if(Math.floor(n / 100) > 0){
+					if(Math.floor(n / 1000) > 0){
+						texto = (milhar(n, 1000));
+						texto += " mil "
+						if ( centena(n) != 0) {
+							texto += " e " + centena(n);	
+						}
+						if ( dezena(n) != 0) {
+							texto += " e " + dezena(n);	
+						}
+						if ( uni(n) != 0 && flag == 0) {
+							texto += " e " + uni(n)	;
+						}
+					}else {
+						texto += centena(n) 
+						if(dezena(n) != 0) {
+							texto += " e " + dezena(n);
+						}
+						if(uni(n) != 0 && flag == 0) {
+							texto += " e " + uni(n);
+						}
+					}
+				} else {
+					texto += dezena(n) 
+					if(uni(n) != 0 && flag == 0) {
+						texto += " e " + uni(n);
+					}
+				}
+			} else {
+				texto += uni(n)
+			}
+		}
+
+		outNumero.textContent = n;
+		outExtenso.textContent = texto;
+		inNumero.value = "";
+
+	}
+
+	
+	</script>
+	<style type="text/css">
+		*{
+            text-align: center;
+        }
+
+        body{
+            background-color: #efefef;
+        }
+
+        p{
+            font-size: 1.2rem;
+        }
+
+        input{
+            font-size: 1rem;
+            padding: .5rem;
+            border-radius: 10px;
+            margin: .5rem 0;
+        }
+	</style>
+</head>
+<body>
+
+	<h1>Informe o numero</h1>
+	<p>Clique no botão "Extenso" abaixo para ter o valor por extenso</p>
+	<p>Valores entre 0 e 10000</p>
+	<input type="text" id="inNumero">
+    <br>
+	<input type="button" id="btExtenso" value="Extenso" onclick="escrever()">
+
+	<b><p id="outNumero"></p></b>
+	<b><p id="outExtenso"></p></b>
+
+</body>
+</html>
